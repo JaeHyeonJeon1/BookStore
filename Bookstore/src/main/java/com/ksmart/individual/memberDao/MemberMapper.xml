@@ -7,7 +7,7 @@
 		SELECT member_name AS memberName
 		FROM member
 		WHERE member_id = #{memberId}
-		AND member_password = #{memberPassword} 
+		AND member_password = PASSWORD(#{memberPassword})
 	</select>
 	
 	<!-- 로그인 회원정보 -->
@@ -17,7 +17,7 @@
 			,member_name AS memberName
 		FROM member
 		WHERE member_id = #{memberId}
-		AND member_password = #{memberPassword}
+		AND member_password = PASSWORD(#{memberPassword})
 	</select>
 	
 	<!-- 아이디 확인 -->
@@ -26,4 +26,41 @@
 		FROM member
 		WHERE member_id = #{memberId}
 	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="signUp" parameterType="com.ksmart.individual.memberDto.MemberVo">
+		INSERT INTO member(
+			member_id
+			,member_password
+			,member_name
+			,member_level
+			,member_sign_up
+		)VALUE(
+			#{memberId}
+			,PASSWORD(#{memberPassword})
+			,#{memberName}
+			,#{memberLevel}
+			,LEFT(NOW() ,10)
+		)
+	</insert>
+	
+	<!-- 회원가입 상세정보 -->
+	<insert id="signUpDetails" parameterType="com.ksmart.individual.memberDto.MemberVo">
+		INSERT INTO member_details(
+			member_details_no
+			,member_id
+			,member_details_phone
+			,member_details_date_of_birth
+			,member_details_email
+			,member_details_sign_up
+		)VALUES(
+			(SELECT COUNT(member_details_no)+1 AS count FROM member_details subString)
+			,#{memberId}
+			,#{memberPhone}
+			,#{memberDateOfBirth}
+			,#{memberEmail}
+			,LEFT(NOW() ,10)
+		)
+	</insert>
+	
 </mapper>

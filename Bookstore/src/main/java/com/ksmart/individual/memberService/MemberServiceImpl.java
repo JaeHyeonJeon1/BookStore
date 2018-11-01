@@ -45,14 +45,33 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.viewMember(memberVo);
 	}
 
-	// 아이디 체크
+	// 아이디 존재 여부
 	@Override
-	public boolean memberIdCheck(MemberVo memberVo) {
+	public boolean memberIdCheck(String memberId) {
 		System.out.println("MemberServiceImpl-memberIdCheck");
 		
-		boolean memberIdCheck = memberDao.memberIdCheck(memberVo);
+		boolean memberIdCheck = memberDao.memberIdCheck(memberId);
 		
 		return memberIdCheck;
+	}
+
+	// 회원가입
+	@Override
+	public boolean memberSignUp(MemberVo memberVo) {
+		System.out.println("MemberServiceImpl-memberSignUp");
+		
+		if(memberVo.getMemberId() == null || memberVo.getMemberPassword() == null || memberVo.getMemberName() == null || memberVo.getMemberDateOfBirth() == null 
+				|| memberVo.getMemberPhone() == null || memberVo.getMemberEmail() == null) {
+			
+			
+			
+		}
+		
+		memberDao.memberSignUp(memberVo);
+		
+		memberDao.memberSignUpDetails(memberVo);
+		
+		return false;
 	}
 	
 }

@@ -8,12 +8,6 @@
 		<!-- jquery -->
 		<script src="<c:url value="/resources/jquery/jquery.js" />"></script>
 		
-		<!-- bootstrap -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.css">
-		
-		<!-- bootstrap script -->
-		<script src="<c:url value="/resources/bootstrap/js/bootstrap.js" />"></script>
-		
 		<script type="text/javascript">
 		
 			var logout = '${logout}';

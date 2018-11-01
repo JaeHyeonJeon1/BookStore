@@ -12,7 +12,9 @@ public interface MemberService {
 	// 회원 정보
 	public MemberVo viewMember(MemberVo memberVo);
 	
-	// 아이디확인
-	public boolean memberIdCheck(MemberVo memberVo);
+	// 아이디 존재 여부
+	public boolean memberIdCheck(String memberId);
 	
+	// 회원가입
+	public boolean memberSignUp(MemberVo memberVo);
 }
